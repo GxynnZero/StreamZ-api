@@ -107,8 +107,13 @@ function ensureYtDlpReady(): Promise<void> {
     bootstrapPromise = (async () => {
       const downloadDir = getRuntimeDownloadDir();
       const bundledBinaryPath = getBundledYtDlpBinaryPath();
+      const env = (globalThis as typeof globalThis & {
+        process?: { env?: Record<string, string | undefined> };
+      }).process?.env;
 
-      if (bundledBinaryPath && existsSync(bundledBinaryPath)) {
+      const preferBundledBinary = Boolean(env?.YTDLP_BINARY_PATH) || !env?.VERCEL;
+
+      if (preferBundledBinary && bundledBinaryPath && existsSync(bundledBinaryPath)) {
         ytdlpBinaryPath = bundledBinaryPath;
       } else {
         ytdlpBinaryPath = await helpers.downloadYtDlp(downloadDir);

@@ -70,7 +70,15 @@ PORT=3000
 HOST=0.0.0.0
 ```
 
-`PORT` and `HOST` are optional. The backend uses native fetch plus `ytdlp-nodejs` for YouTube extraction, and the yt-dlp binary is resolved from `src/assets` or downloaded on demand from `src/lib/yt.ts`.
+`PORT` and `HOST` are optional. The backend uses native fetch plus `ytdlp-nodejs` for YouTube extraction, and the yt-dlp binary is resolved from `src/assets`, from `YTDLP_BINARY_PATH`, or downloaded on demand from `src/lib/yt.ts`.
+
+If you need to force an absolute executable path, set:
+
+```bash
+YTDLP_BINARY_PATH=/absolute/path/to/yt-dlp
+```
+
+On Vercel, the runtime falls back to a downloaded binary in `/tmp` so the deployment does not depend on a local PATH entry.
 
 ## Deployment
 
