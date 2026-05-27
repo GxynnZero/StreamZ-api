@@ -2,18 +2,19 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/api/**/*.js",
+      "src": "src/api/**/*.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/api/videoDetails", "dest": "/src/api/videoDetails.js" },
-    { "src": "/api/search", "dest": "/src/api/search.js" },
-    { "src": "/api/relatedVideos", "dest": "/src/api/relatedVideos.js" },
-    { "src": "/api/channel", "dest": "/src/api/channel.js" },
-    { "src": "/api/playlists", "dest": "/src/api/playlists.js" },
-    { "src": "/api/comments", "dest": "/src/api/comments.js" },
-    { "src": "/api/trending", "dest": "/src/api/trending.js" },
-    { "src": "/api/ai", "dest": "/src/api/ai.js" }
+    { "src": "/api/videos/search", "dest": "/src/api/videos/search.ts" },
+    { "src": "/api/videos/details", "dest": "/src/api/videos/details.ts" },
+    { "src": "/api/videos/related", "dest": "/src/api/videos/related.ts" },
+    { "src": "/api/channels", "dest": "/src/api/channels.ts" },
+    { "src": "/api/playlists", "dest": "/src/api/playlists.ts" },
+    { "src": "/api/videos/comments", "dest": "/src/api/videos/comments.ts" },
+    { "src": "/api/videos/trending", "dest": "/src/api/videos/trending.ts" },
+    { "src": "/api/ai/analyze", "dest": "/src/api/ai/analyze.ts" },
+    { "src": "/health", "dest": "/src/api/health.ts" }
   ]
 }

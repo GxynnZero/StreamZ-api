@@ -2,13 +2,18 @@
   "name": "streamz",
   "version": "1.0.0",
   "type": "module",
-  "description": "StreamZ backend-only YouTube API service built with Fastify",
+  "description": "StreamZ API is a production-ready YouTube backend service built with Fastify and Vercel functions",
   "scripts": {
-    "dev": "bun --watch src/server.js",
-    "start": "bun src/server.js"
+    "dev": "bun --watch src/server/fastify.ts",
+    "start": "bun src/server/fastify.ts"
   },
   "dependencies": {
     "dotenv": "^16.6.1",
-    "fastify": "^5.8.5"
+    "fastify": "^5.8.5",
+    "typescript": "^6.0.3",
+    "ytdlp-nodejs": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
   }
 }
