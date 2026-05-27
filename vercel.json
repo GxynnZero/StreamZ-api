@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.js",
+      "src": "src/api/**/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/api/videoDetails", "dest": "/api/videoDetails.js" },
-    { "src": "/api/search", "dest": "/api/search.js" },
-    { "src": "/api/relatedVideos", "dest": "/api/relatedVideos.js" },
-    { "src": "/api/channel", "dest": "/api/channel.js" },
-    { "src": "/api/playlists", "dest": "/api/playlists.js" },
-    { "src": "/api/comments", "dest": "/api/comments.js" },
-    { "src": "/api/trending", "dest": "/api/trending.js" },
-    { "src": "/api/ai", "dest": "/api/ai.js" }
+    { "src": "/api/videoDetails", "dest": "/src/api/videoDetails.js" },
+    { "src": "/api/search", "dest": "/src/api/search.js" },
+    { "src": "/api/relatedVideos", "dest": "/src/api/relatedVideos.js" },
+    { "src": "/api/channel", "dest": "/src/api/channel.js" },
+    { "src": "/api/playlists", "dest": "/src/api/playlists.js" },
+    { "src": "/api/comments", "dest": "/src/api/comments.js" },
+    { "src": "/api/trending", "dest": "/src/api/trending.js" },
+    { "src": "/api/ai", "dest": "/src/api/ai.js" }
   ]
 }
