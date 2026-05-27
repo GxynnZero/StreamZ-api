@@ -1,5 +1,6 @@
 import { YtDlp, helpers } from 'ytdlp-nodejs';
 import { existsSync } from 'fs';
+import { fileURLToPath } from 'url';
 import { compactNumber, pickFirstNumber, pickFirstText, success, failure, type ApiResult, toArray } from './utils.js';
 
 export type NormalizedVideo = {
@@ -80,7 +81,19 @@ let bootstrapPromise: Promise<void> | undefined;
 let ytdlpInstance: YtDlp | undefined;
 let ytdlpBinaryPath: string | undefined;
 let ffmpegBinaryPath: string | undefined;
-const bundledYtDlpBinaryPath = 'F:\\Projects\\streamz\\src\\assets\\yt-dlp.exe';
+
+function getBundledYtDlpBinaryPath(): string | undefined {
+  const env = (globalThis as typeof globalThis & {
+    process?: { env?: Record<string, string | undefined>; platform?: string };
+  }).process;
+
+  if (env?.env?.YTDLP_BINARY_PATH) {
+    return env.env.YTDLP_BINARY_PATH;
+  }
+
+  const assetName = env?.platform === 'win32' ? 'yt-dlp.exe' : 'yt-dlp';
+  return fileURLToPath(new URL(`../assets/${assetName}`, import.meta.url));
+}
 
 function getRuntimeDownloadDir(): string {
   const env = (globalThis as typeof globalThis & {
@@ -94,8 +107,10 @@ function ensureYtDlpReady(): Promise<void> {
   if (!bootstrapPromise) {
     bootstrapPromise = (async () => {
       const downloadDir = getRuntimeDownloadDir();
-      if (existsSync(bundledYtDlpBinaryPath)) {
-        ytdlpBinaryPath = bundledYtDlpBinaryPath;
+      const bundledBinaryPath = getBundledYtDlpBinaryPath();
+
+      if (bundledBinaryPath && existsSync(bundledBinaryPath)) {
+        ytdlpBinaryPath = bundledBinaryPath;
       } else {
         ytdlpBinaryPath = await helpers.downloadYtDlp(downloadDir);
       }
