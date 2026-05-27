@@ -1,5 +1,5 @@
-import { handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils';
-import { getTrending } from '../../lib/yt';
+import { handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils.js';
+import { getTrending } from '../../lib/yt.js';
 
 export type TrendingQuery = {
 	category?: string;

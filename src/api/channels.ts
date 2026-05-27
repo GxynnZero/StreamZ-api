@@ -1,5 +1,5 @@
-import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../lib/utils';
-import { getChannel } from '../lib/yt';
+import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../lib/utils.js';
+import { getChannel } from '../lib/yt.js';
 
 export type ChannelQuery = {
 	channelId?: string;

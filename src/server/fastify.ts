@@ -1,16 +1,16 @@
 import dotenv from 'dotenv';
 import Fastify from 'fastify';
 
-import { handleAi } from '../api/ai/analyze';
-import { handleHealth } from '../api/health';
-import { handleChannel } from '../api/channels';
-import { handleComments } from '../api/videos/comments';
-import { handlePlaylists } from '../api/playlists';
-import { handleRelatedVideos } from '../api/videos/related';
-import { handleSearch } from '../api/videos/search';
-import { handleTrending } from '../api/videos/trending';
-import { handleVideoDetails } from '../api/videos/details';
-import { writeApiResult, writeError } from '../lib/utils';
+import { handleAi } from '../api/ai/analyze.js';
+import { handleHealth } from '../api/health.js';
+import { handleChannel } from '../api/channels.js';
+import { handleComments } from '../api/videos/comments.js';
+import { handlePlaylists } from '../api/playlists.js';
+import { handleRelatedVideos } from '../api/videos/related.js';
+import { handleSearch } from '../api/videos/search.js';
+import { handleTrending } from '../api/videos/trending.js';
+import { handleVideoDetails } from '../api/videos/details.js';
+import { writeApiResult, writeError } from '../lib/utils.js';
 
 declare const process: {
   env: Record<string, string | undefined>;

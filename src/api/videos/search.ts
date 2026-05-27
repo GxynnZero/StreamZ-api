@@ -1,5 +1,5 @@
-import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils';
-import { searchVideos } from '../../lib/yt';
+import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils.js';
+import { searchVideos } from '../../lib/yt.js';
 
 export type SearchQuery = {
 	query?: string;

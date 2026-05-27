@@ -1,5 +1,5 @@
-import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../lib/utils';
-import { getPlaylists } from '../lib/yt';
+import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../lib/utils.js';
+import { getPlaylists } from '../lib/yt.js';
 
 export type PlaylistsQuery = {
   playlistId?: string;

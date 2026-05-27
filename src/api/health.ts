@@ -1,4 +1,4 @@
-import { success, writeApiResult, type ResponseLike } from '../lib/utils';
+import { success, writeApiResult, type ResponseLike } from '../lib/utils.js';
 
 export async function handleHealth() {
   return success({

@@ -1,5 +1,5 @@
-import { handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils';
-import { aiAnalyzeVideo } from '../../lib/yt';
+import { handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils.js';
+import { aiAnalyzeVideo } from '../../lib/yt.js';
 
 export type AiAnalyzeBody = {
 	id?: string;

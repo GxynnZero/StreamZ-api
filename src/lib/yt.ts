@@ -1,5 +1,5 @@
 import { YtDlp, helpers } from 'ytdlp-nodejs';
-import { compactNumber, pickFirstNumber, pickFirstText, success, failure, type ApiResult, toArray } from './utils';
+import { compactNumber, pickFirstNumber, pickFirstText, success, failure, type ApiResult, toArray } from './utils.js';
 
 export type NormalizedVideo = {
   id: string;

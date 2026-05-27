@@ -1,5 +1,5 @@
-import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils';
-import { getVideoDetails } from '../../lib/yt';
+import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils.js';
+import { getVideoDetails } from '../../lib/yt.js';
 
 export type VideoDetailsQuery = {
 	videoId?: string;

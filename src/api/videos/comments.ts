@@ -1,5 +1,5 @@
-import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils';
-import { getComments } from '../../lib/yt';
+import { failure, handleOptions, writeApiResult, writeError, type ResponseLike } from '../../lib/utils.js';
+import { getComments } from '../../lib/yt.js';
 
 export type CommentsQuery = {
 	videoId?: string;
