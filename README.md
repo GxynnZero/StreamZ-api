@@ -70,7 +70,7 @@ PORT=3000
 HOST=0.0.0.0
 ```
 
-`PORT` and `HOST` are optional. The backend uses native fetch plus `ytdlp-nodejs` for YouTube extraction, and the yt-dlp / FFmpeg binaries are downloaded on demand from `src/lib/yt.ts`.
+`PORT` and `HOST` are optional. The backend uses native fetch plus `ytdlp-nodejs` for YouTube extraction, and the yt-dlp binary is resolved from `src/assets` or downloaded on demand from `src/lib/yt.ts`.
 
 ## Deployment
 
@@ -78,12 +78,11 @@ HOST=0.0.0.0
 
 ## yt-dlp Bootstrap
 
-The shared YouTube wrapper initializes yt-dlp and FFmpeg lazily using:
+The shared YouTube wrapper initializes yt-dlp lazily using:
 
 ```ts
 import { helpers } from 'ytdlp-nodejs';
 await helpers.downloadYtDlp();
-await helpers.downloadFFmpeg();
 ```
 
 This happens inside `src/lib/yt.ts` before the first extraction call, so the server can start even when the binaries are not present yet.

@@ -80,7 +80,6 @@ export type AiAnalysis = {
 let bootstrapPromise: Promise<void> | undefined;
 let ytdlpInstance: YtDlp | undefined;
 let ytdlpBinaryPath: string | undefined;
-let ffmpegBinaryPath: string | undefined;
 
 function getBundledYtDlpBinaryPath(): string | undefined {
   const env = (globalThis as typeof globalThis & {
@@ -114,8 +113,6 @@ function ensureYtDlpReady(): Promise<void> {
       } else {
         ytdlpBinaryPath = await helpers.downloadYtDlp(downloadDir);
       }
-
-      ffmpegBinaryPath = await helpers.downloadFFmpeg(downloadDir);
     })();
   }
 
@@ -131,8 +128,7 @@ async function getYtDlp(): Promise<YtDlp> {
     }
 
     ytdlpInstance = new YtDlp({
-      binaryPath: ytdlpBinaryPath,
-      ffmpegPath: ffmpegBinaryPath
+      binaryPath: ytdlpBinaryPath
     });
   }
 
