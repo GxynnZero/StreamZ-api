@@ -1,4 +1,5 @@
 import { YtDlp, helpers } from 'ytdlp-nodejs';
+import { existsSync } from 'fs';
 import { compactNumber, pickFirstNumber, pickFirstText, success, failure, type ApiResult, toArray } from './utils.js';
 
 export type NormalizedVideo = {
@@ -79,6 +80,7 @@ let bootstrapPromise: Promise<void> | undefined;
 let ytdlpInstance: YtDlp | undefined;
 let ytdlpBinaryPath: string | undefined;
 let ffmpegBinaryPath: string | undefined;
+const bundledYtDlpBinaryPath = 'F:\\Projects\\streamz\\src\\assets\\yt-dlp.exe';
 
 function getRuntimeDownloadDir(): string {
   const env = (globalThis as typeof globalThis & {
@@ -92,7 +94,12 @@ function ensureYtDlpReady(): Promise<void> {
   if (!bootstrapPromise) {
     bootstrapPromise = (async () => {
       const downloadDir = getRuntimeDownloadDir();
-      ytdlpBinaryPath = await helpers.downloadYtDlp(downloadDir);
+      if (existsSync(bundledYtDlpBinaryPath)) {
+        ytdlpBinaryPath = bundledYtDlpBinaryPath;
+      } else {
+        ytdlpBinaryPath = await helpers.downloadYtDlp(downloadDir);
+      }
+
       ffmpegBinaryPath = await helpers.downloadFFmpeg(downloadDir);
     })();
   }
