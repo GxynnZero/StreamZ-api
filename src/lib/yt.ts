@@ -77,12 +77,23 @@ export type AiAnalysis = {
 
 let bootstrapPromise: Promise<void> | undefined;
 let ytdlpInstance: YtDlp | undefined;
+let ytdlpBinaryPath: string | undefined;
+let ffmpegBinaryPath: string | undefined;
+
+function getRuntimeDownloadDir(): string {
+  const env = (globalThis as typeof globalThis & {
+    process?: { env?: Record<string, string | undefined> };
+  }).process?.env;
+
+  return env?.YTDLP_DOWNLOAD_DIR ?? env?.TMPDIR ?? env?.TEMP ?? env?.TMP ?? '/tmp/streamz-ytdlp';
+}
 
 function ensureYtDlpReady(): Promise<void> {
   if (!bootstrapPromise) {
     bootstrapPromise = (async () => {
-      await helpers.downloadYtDlp();
-      await helpers.downloadFFmpeg();
+      const downloadDir = getRuntimeDownloadDir();
+      ytdlpBinaryPath = await helpers.downloadYtDlp(downloadDir);
+      ffmpegBinaryPath = await helpers.downloadFFmpeg(downloadDir);
     })();
   }
 
@@ -93,15 +104,13 @@ async function getYtDlp(): Promise<YtDlp> {
   await ensureYtDlpReady();
 
   if (!ytdlpInstance) {
-    const binaryPath = helpers.findYtdlpBinary();
-    const ffmpegPath = helpers.findFFmpegBinary();
-
-    if (!binaryPath) {
+    if (!ytdlpBinaryPath) {
       throw new Error('yt-dlp binary not found after bootstrap');
     }
 
     ytdlpInstance = new YtDlp({
-      binaryPath
+      binaryPath: ytdlpBinaryPath,
+      ffmpegPath: ffmpegBinaryPath
     });
   }
 
